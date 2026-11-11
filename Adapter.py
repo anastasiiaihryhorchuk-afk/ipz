@@ -1,15 +1,11 @@
 from abc import ABC, abstractmethod
 
-
-# Спільний інтерфейс для всіх платіжних систем
 class PaymentProcessor(ABC):
 
     @abstractmethod
     def pay(self, account_identifier, amount):
         pass
 
-
-# Внутрішня банківська система
 class InternalBankGateway:
 
     def process_payment(self, account_number, amount):
@@ -19,8 +15,6 @@ class InternalBankGateway:
         )
         return True
 
-
-# Адаптер для внутрішнього банку
 class InternalBankProcessor(PaymentProcessor):
 
     def __init__(self):
@@ -32,8 +26,6 @@ class InternalBankProcessor(PaymentProcessor):
             amount
         )
 
-
-# Стороння платіжна система GlobalPay
 class GlobalPaySDK:
 
     def charge_customer(self, user_email, cents_amount, currency):
@@ -45,8 +37,6 @@ class GlobalPaySDK:
 
         return {"status": "SUCCESS"}
 
-
-# Адаптер для GlobalPay
 class GlobalPayAdapter(PaymentProcessor):
 
     def __init__(self):
@@ -63,8 +53,6 @@ class GlobalPayAdapter(PaymentProcessor):
 
         return result["status"] == "SUCCESS"
 
-
-# Стороння система оплати через криптовалюту
 class CryptoPayService:
 
     def send_crypto_invoice(self, wallet_address, uah_sum):
@@ -75,8 +63,6 @@ class CryptoPayService:
 
         return "OK"
 
-
-# Адаптер для CryptoPay
 class CryptoPayAdapter(PaymentProcessor):
 
     def __init__(self):
@@ -110,8 +96,6 @@ class CheckoutService:
 
         return result
 
-
-# Демонстрація роботи
 if __name__ == "__main__":
 
     print("Оберіть платіжну систему:")
