@@ -7,15 +7,11 @@ class ShippingStrategy(ABC):
     def calculate(self, weight_kg, distance_km):
         pass
 
-
-# Самовивіз
 class PickupStrategy(ShippingStrategy):
 
     def calculate(self, weight_kg, distance_km):
         return 0
 
-
-# Звичайна кур'єрська доставка
 class CourierStrategy(ShippingStrategy):
 
     def calculate(self, weight_kg, distance_km):
@@ -25,8 +21,6 @@ class CourierStrategy(ShippingStrategy):
 
         return base_price + distance_price + weight_price
 
-
-# Експрес-доставка
 class ExpressDeliveryStrategy(ShippingStrategy):
 
     def calculate(self, weight_kg, distance_km):
@@ -41,7 +35,6 @@ class ExpressDeliveryStrategy(ShippingStrategy):
         return total
 
 
-# Доставка до поштомата
 class PostMachineStrategy(ShippingStrategy):
 
     def calculate(self, weight_kg, distance_km):
@@ -50,8 +43,6 @@ class PostMachineStrategy(ShippingStrategy):
 
         return 50
 
-
-# Контекст, який використовує вибрану стратегію
 class OrderShippingContext:
 
     def __init__(self, strategy):
@@ -63,8 +54,6 @@ class OrderShippingContext:
     def calculate_delivery_cost(self, weight_kg, distance_km):
         return self._strategy.calculate(weight_kg, distance_km)
 
-
-# Демонстрація роботи
 if __name__ == "__main__":
 
     weight = float(input("Введіть вагу посилки (кг): "))
